@@ -4,7 +4,10 @@ namespace AbstractFactory;
 
 use AbstractFactory\Db\MySQL;
 use AbstractFactory\Db\OracleSQL;
+use AbstractFactory\Db\PostgreSQL;
 use AbstractFactory\Factory\MySqlFactory;
+use AbstractFactory\Factory\OracleFactory;
+use AbstractFactory\Factory\PostgreFactory;
 use AbstractFactory\Service\Service;
 
 spl_autoload_register(function ($className) {
@@ -21,12 +24,12 @@ $serviceWithMysqlRepositories = new Service($mysqlFactory);
 $serviceWithMysqlRepositories->addRecord();
 $serviceWithMysqlRepositories->addQueryBuilder();
 
-$postgreFactory = new PostgreFactory(new MySQL());
+$postgreFactory = new PostgreFactory(new PostgreSQL());
 $serviceWithPostgreRepositories = new Service($postgreFactory);
 $serviceWithPostgreRepositories->addRecord();
 $serviceWithPostgreRepositories->addQueryBuilder();
 
-$oracleFactory = new OracleFactory(new MySQL());
+$oracleFactory = new OracleFactory(new OracleSQL());
 $serviceWithOracleRepositories = new Service($oracleFactory);
 $serviceWithOracleRepositories->addRecord();
 $serviceWithOracleRepositories->addQueryBuilder();
